@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pet Bazzar App | Adopt, Care, and Love Pets – Download Now!</title>
+  <!-- Bootstrap 5 CDN -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <!-- Google Fonts & Icons -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --primary: #FFF3E0;
+      --secondary: #FFE0B2;
+      --accent: #FF9800;
+      --pale: #FFF8F0;
+      --text-main: #5C3A0D;
+      --btn-gradient: linear-gradient(90deg, #FF9800 20%, #FFA726 100%);
+      --pet-yellow: #FFD180;
+      --pet-blue: #FFE0B2;
+      --pet-brown: #D2691E;
+      --shadow-card: 0 4px 18px rgba(255, 152, 0, 0.2);
+    }
+    html,
+    body {
+      font-family: "Nunito", sans-serif;
+      background: var(--pale);
+      color: var(--text-main);
+      min-height: 100vh;
+      scroll-behavior: smooth;
+    }
+    .top-banner {
+      background: var(--pet-yellow);
+      color: #b87728;
+      text-align: center;
+      font-weight: bold;
+      padding: 10px 0;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px rgba(255, 209, 128, 0.55);
+      font-size: 1.08rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .banner-paws {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin: 0 6px;
+      animation: pawMove 2s infinite alternate;
+    }
+    @keyframes pawMove {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.16); }
+      100% { transform: scale(1); }
+    }
+    .navbar {
+      background: #fff;
+      box-shadow: 0 2px 14px rgba(255, 152, 0, 0.08);
+    }
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+    .navbar-brand img {
+      height: 38px;
+      margin-right: 8px;
+    }
+    .nav-link {
+      color: var(--text-main) !important;
+      font-weight: 600;
+      margin-right: 16px;
+      border-radius: 999px;
+      transition: background 0.12s;
+    }
+    .nav-link.active,
+    .nav-link:hover {
+      background: var(--accent);
+      color: #fff !important;
+    }
+    .hero-section {
+      background: linear-gradient(
+        120deg,
+        var(--primary) 80%,
+        rgba(255, 193, 128, 0.5) 100%
+      );
+      padding: 60px 0 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-pets {
+      font-size: 2.45rem;
+      letter-spacing: 1px;
+      font-weight: bold;
+      margin-bottom: 16px;
+      color: var(--accent);
+      text-shadow: 0 2px 10px #fff3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .hero-pets img {
+      width: 50px;
+    }
+    .hero-tag {
+      font-size: 1.12rem;
+      margin-bottom: 20px;
+      color: #6d471e;
+      font-weight: 500;
+    }
+    .download-badges img {
+      max-width: 172px;
+      margin: 14px 10px 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(255, 169, 38, 0.3);
+      background: #fff;
+    }
+    .qr-wrap {
+      display: inline-block;
+      margin-top: 18px;
+      text-align: center;
+      background: #fffefd;
+      border-radius: 15px;
+      box-shadow: var(--shadow-card);
+      padding: 15px 12px 4px;
+      border: 2px dashed var(--primary);
+      position: relative;
+      animation: pop-in 1.2s cubic-bezier(.2, 2.5, .6, .9);
+    }
+    @keyframes pop-in {
+      0% { transform: scale(0.4) translateY(-40px); opacity: 0; }
+      80% { transform: scale(1.06) translateY(4px); }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .hero-icons {
+      font-size: 2.2em;
+      color: var(--accent);
+      margin: 0 4px;
+      opacity: 0.85;
+      filter: drop-shadow(0 2px 7px #fff5f5);
+    }
+    .android-only {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      background: #ffe0e0;
+      border-radius: 18px;
+      color: #ff4365;
+      font-weight: 700;
+      padding: 8px 24px;
+      border: 1.7px dashed rgba(234, 100, 117, 0.44);
+      width: fit-content;
+      margin: 0 auto 8px;
+      box-shadow: var(--shadow-card);
+      font-size: 1.04rem;
+      animation: pop-in 1.04s cubic-bezier(.2, 2.5, .6, .9);
+    }
+    .android-icon {
+      font-size: 1.7rem;
+      color: #6cc24a;
+      margin-right: 2px;
+      text-shadow: 0 2px 7px #c6ffb3;
+      vertical-align: middle;
+    }
+    .about-pet {
+      max-width: 720px;
+      margin: auto;
+      background: #fff8f6;
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      padding: 28px 16px;
+    }
+    .service-card {
+      background: #FFFAF6;
+      border: none;
+      border-radius: 18px;
+      padding: 28px 16px 21px;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 24px;
+      min-height: 245px;
+      transition: transform 0.26s, box-shadow 0.16s;
+      position: relative;
+    }
+    .service-card:hover {
+      transform: translateY(-5px) scale(1.04);
+      box-shadow: 0 4px 26px rgba(255, 152, 0, 0.2);
+    }
+    .service-icon {
+      display: inline-block;
+      font-size: 2.4rem;
+      margin-bottom: 14px;
+      border-radius: 50%;
+      padding: 11px;
+      background: var(--pale);
+    }
+    .petcard-dog {
+      color: #FF9800;
+      background: var(--primary);
+    }
+    .petcard-cat {
+      color: #F57C00;
+      background: #FFEBCE;
+    }
+    .petcard-rabbit {
+      color: #FB8C00;
+      background: #FFF8E1;
+    }
+    .petcard-bird {
+      color: #FFA726;
+      background: var(--primary);
+    }
+    .service-title {
+      color: var(--accent);
+      font-size: 1.16rem;
+      font-weight: 600;
+    }
+    .carousel-img {
+      border-radius: 16px;
+      box-shadow: 0 3px 22px rgba(255, 152, 0, 0.35);
+      height: 440px;
+      object-fit: cover;
+      max-width: 280px;
+      margin: auto;
+    }
+    .faqs .accordion-button:not(.collapsed) {
+      background: var(--secondary);
+    }
+    .faqs .accordion {
+      max-width: 650px;
+      margin: auto;
+    }
+    .contact-card {
+      background: #FFFAF7;
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      max-width: 620px;
+      margin: auto;
+      padding: 30px 18px 22px;
+    }
+    label {
+      font-weight: 600;
+    }
+    .form-control:focus {
+      border-color: var(--accent);
+      box-shadow: 0 2px 9px rgba(255, 152, 0, 0.45);
+    }
+    .contact-info-pet {
+      background: #fffbe4;
+      border-radius: 12px;
+      margin: 16px 0 2px;
+      padding: 17px 15px;
+      font-size: 1.06rem;
+      box-shadow: 0 1px 8px rgba(255, 152, 0, 0.27);
+    }
+    .contact-info-pet i {
+      color: #ff8989;
+      font-size: 1.21rem;
+      margin-right: 7px;
+    }
+    .contact-social {
+      display: flex;
+      gap: 21px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 6px;
+      font-size: 1.23rem;
+    }
+    .contact-social a {
+      color: #6f5373;
+      background: #ffecec;
+      padding: 4px 11px;
+      border-radius: 99px;
+      transition: background 0.13s, color 0.14s;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.2px;
+    }
+    .contact-social a:hover {
+      background: var(--secondary);
+      color: #034b61;
+    }
+    footer {
+      background: var(--primary);
+      color: #82654B;
+      padding: 30px 0 8px;
+      border-top: 2px solid var(--pet-yellow);
+      text-align: center;
+    }
+    .footer-social a {
+      color: #FFA868;
+      font-size: 1.6rem;
+      margin: 0 12px;
+      transition: color 0.14s;
+      padding: 3px 7px;
+      border-radius: 50%;
+      background: #fff3ea;
+      box-shadow: 0 2px 6px rgba(255, 232, 128, 0.52);
+    }
+    .footer-social a:hover {
+      color: #ff4365;
+      background: #e3faff;
+    }
+    .footer-badges img {
+      max-width: 135px;
+      margin: 7px 6px;
+    }
+    @media (max-width: 600px) {
+      .navbar-brand {
+        font-size: 1.1rem;
+      }
+      .hero-section {
+        padding: 32px 0 18px;
+      }
+      .section-title {
+        font-size: 1.25rem;
+      }
+      .carousel-img {
+        height: 160px;
+      }
+      .footer-badges img {
+        max-width: 110px;
+      }
+    }
+    .paws-bg {
+      font-size: 2.3rem;
+      position: absolute;
+      opacity: 0.1;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+    .paws-bg-1 {
+      left: 4vw;
+      top: 180px;
+      transform: rotate(-16deg);
+    }
+    .paws-bg-2 {
+      right: 7vw;
+      top: 370px;
+      transform: rotate(22deg);
+    }
+    .paws-bg-3 {
+      left: 60vw;
+      top: 520px;
+      font-size: 3rem;
+    }
+    .paws-bg-4 {
+      left: 6vw;
+      top: 780px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Banner -->
+  <div class="top-banner">
+    <span class="banner-paws"><i class="bi bi-emoji-smile"></i></span>
+    🐾 Buy &amp; Sell Pets Easily – <b>Download the App Now!</b> 🐾
+    <span class="banner-paws"><i class="bi bi-suit-heart-fill"></i></span>
+  </div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg py-2">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="logo.png" alt="Pet Bazzar Logo" />
+        Pet Bazzar
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse ms-md-3" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#screens">Screenshots</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faqs">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Visual paw backgrounds -->
+    <div class="paws-bg paws-bg-1">🐾</div>
+    <div class="paws-bg paws-bg-2">🐾</div>
+    <div class="paws-bg paws-bg-3">🐾</div>
+    <div class="paws-bg paws-bg-4">🐾</div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+      <div class="hero-pets">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/616/616408.png"
+          alt="dog"
+        />
+        Welcome to <span style="color: var(--accent)">Pet Bazzar</span>
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/616/616408.png"
+          alt="dog"
+          style="transform: scaleX(-1)"
+        />
+      </div>
+      <div class="hero-tag">
+        Adopt, care, and <b>love pets</b> – all in one app.<br />
+        <span style="font-size: 0.94rem; color: #968c7e;"
+          >Browse pets, find services, and join the animal lovers' community!</span
+        >
+      </div>
+      <div
+        class="download-badges mt-2 d-flex flex-wrap align-items-center justify-content-center"
+      >
+        <a
+          href="https://example.com/apps/petbazzar.apk"
+          download="PetBazzarAndroid.apk"
+          title="Download PetBazzar Android App"
+        >
+          <img
+            src="google.png"
+            alt="Get on Google Play"
+            title="Download on Google Play"
+          />
+        </a>
+      </div>
+      <div class="qr-wrap mt-1">
+        <img src="qr.png" alt="QR code for download" width="115" />
+        <div style="font-size:1rem; margin-top:7px; color:#5B3D2E;">
+          Scan to download the app!
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+      <div class="container about-pet">
+        <h2 class="section-title text-center">
+          <i class="bi bi-info-circle"></i> About Pet Bazzar
+        </h2>
+        <p>
+          <b>Pet Bazzar</b> is a delightful app for pet lovers in India! Our
+          mission: connect pets with loving families, and help pet parents
+          access everything their furry, feathery, or scaly friends need to
+          live happy, healthy lives.<br /><br />
+          <b style="color: var(--accent)">Our Promise:</b>
+        </p>
+        <ul>
+          <li>Find genuine pets for adoption near you.</li>
+          <li>
+            Book local vet visits, grooming, and pet care easily.
+          </li>
+          <li>
+            Browse helpful resources—tips, guides, and a caring pet
+            community.
+          </li>
+        </ul>
+        <p>
+          We’re passionate about responsible pet ownership, welfare, and
+          bringing joy to humans and animals alike!
+        </p>
+      </div>
+    </section>
+
+    <!-- App Promo Video Section -->
+    <section id="appvideo">
+      <div class="container text-center py-4">
+        <h2 class="section-title" style="margin-bottom:18px;">
+          <i class="bi bi-play-circle"></i> Watch Pet Bazzar in Action!
+        </h2>
+        <div
+          style="max-width:410px; margin:auto; box-shadow:0 6px 22px rgba(255,152,0,0.6); border-radius:18px; overflow:hidden; border:4px solid var(--pet-yellow); position:relative;"
+        >
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            style="width:100%; height:auto; display:block; background:#fbead6;"
+          >
+            <source src="petbazzar.mp4" type="video/mp4" />
+            Sorry, your browser doesn't support embedded videos.
+          </video>
+          <span
+            style="position:absolute; right:8px; top:6px; font-size:2.2rem; opacity:.22;"
+          >
+            🐾
+          </span>
+        </div>
+        <div
+          style="margin-top:14px; color: var(--accent); font-weight:600; font-size:1.07rem;"
+        >
+          One app, every pet need! Download now for free on Android!
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" style="background: #fffbe4;">
+      <div class="container">
+        <h2 class="section-title text-center"><i class="bi bi-stars"></i> Our Services</h2>
+        <div class="row justify-content-center">
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="service-card animate-fade-up">
+              <div class="service-icon petcard-dog"><i class="bi bi-house-heart"></i></div>
+              <div class="service-title">Pet Adoption</div>
+              <p>Connect pets to loving homes in your city and community.</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="service-card animate-fade-up delay-2">
+              <div class="service-icon petcard-cat"><i class="bi bi-activity"></i></div>
+              <div class="service-title">Vet Services</div>
+              <p>Book appointments with trusted local veterinarians when your best friend needs care.</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="service-card animate-fade-up delay-4">
+              <div class="service-icon petcard-rabbit"><i class="bi bi-scissors"></i></div>
+              <div class="service-title">Grooming</div>
+              <p>Spa days made simple — find quality pet groomers near you for dogs, cats, &amp; bunnies.</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="service-card animate-fade-up delay-6">
+              <div class="service-icon petcard-bird"><i class="bi bi-gift"></i></div>
+              <div class="service-title">Accessories &amp; More</div>
+              <p>Discover toys, treats, and pet products to keep tails wagging and purrs loud.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faqs">
+      <div class="container">
+        <h2 class="section-title text-center"><i class="bi bi-question-circle"></i> Frequently Asked Questions</h2>
+        <div class="faqs">
+          <div class="accordion" id="faqsAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faq1">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq1collapse"
+                  aria-expanded="true"
+                >
+                  What is Pet Bazzar?
+                </button>
+              </h2>
+              <div
+                id="faq1collapse"
+                class="accordion-collapse collapse show"
+                data-bs-parent="#faqsAccordion"
+              >
+                <div class="accordion-body">
+                  Pet Bazzar is an India‑focused app where pet lovers can adopt pets, find pet care and services, and build a pet‑friendly community.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faq2">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq2collapse"
+                >
+                  Can I buy or sell animals on the website?
+                </button>
+              </h2>
+              <div
+                id="faq2collapse"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faqsAccordion"
+              >
+                <div class="accordion-body">
+                  No. This site is for info and app download only. Please use our Android app for pet adoption and services.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faq3">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq3collapse"
+                >
+                  Is Pet Bazzar free to use?
+                </button>
+              </h2>
+              <div
+                id="faq3collapse"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faqsAccordion"
+              >
+                <div class="accordion-body">
+                  Yes! Pet Bazzar is 100% free for all users. Just download the app on Google Play.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faq4">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq4collapse"
+                >
+                  Is this app available for iOS or only Android?
+                </button>
+              </h2>
+              <div
+                id="faq4collapse"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faqsAccordion"
+              >
+                <div class="accordion-body">
+                  <b>Currently, Pet Bazzar is only available for Android smartphones via Google Play.</b> Stay tuned for updates!
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faq5">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq5collapse"
+                >
+                  How do I get support or contact you?
+                </button>
+              </h2>
+              <div
+                id="faq5collapse"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faqsAccordion"
+              >
+                <div class="accordion-body">
+                  Use the contact form below or email us at <b>petbazzar.app@gmail.com</b>.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screens">
+      <div class="container">
+        <h2 class="section-title text-center"><i class="bi bi-image"></i> App Screenshots</h2>
+        <div
+          id="appScreensCarousel"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner text-center" style="min-height:160px;">
+            <div class="carousel-item active">
+              <img
+                src="login.jpg"
+                class="carousel-img d-block"
+                alt="Home Screen"
+              />
+              <div class="mt-2" style="color:#A48A15;">Home Screen</div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="pet.jpg"
+                class="carousel-img d-block"
+                alt="Listing Screen"
+              />
+              <div class="mt-2" style="color:#A46815;">Pet Listings</div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="menu.jpg"
+                class="carousel-img d-block"
+                alt="Pet Details"
+              />
+              <div class="mt-2" style="color:#44B69A;">Adopt Details</div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="home.jpg"
+                class="carousel-img d-block"
+                alt="About Screen"
+              />
+              <div class="mt-2" style="color:#758BFF;">About Page</div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#appScreensCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#appScreensCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div
+      ></div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="container contact-card">
+        <h2 class="section-title text-center">
+          <i class="bi bi-envelope"></i> Contact Us
+        </h2>
+        <form id="contact-form" method="POST" action="contact-form-handler.php">
+          <div class="mb-3">
+            <label for="name" class="form-label">Your Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder="Enter name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="email@domain.com"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="msg" class="form-label">Message</label>
+            <textarea
+              id="msg"
+              class="form-control"
+              rows="3"
+              placeholder="Write your question..."
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="btn"
+            style="background:var(--btn-gradient); font-weight:700; color:#fff;"
+          >
+            Send Message
+          </button>
+        </form>
+        <div id="form-msg" class="mt-3"></div>
+        <div class="contact-info-pet mt-4">
+          <div>
+            <i class="bi bi-envelope-fill"></i> Email:
+            <b>petbazzar.app@gmail.com</b>
+          </div>
+          <div>
+            <i class="bi bi-telephone-fill"></i> Phone:
+            <b>+91 97876 74536</b>, <b>+91 75488 87626</b>
+          </div>
+          <div class="contact-social mt-2">
+            <span>Follow us:</span>
+            <a href="#" title="Facebook"><i class="bi bi-facebook"></i> Facebook</a>
+            <a href="#" title="Instagram"><i class="bi bi-instagram"></i> Instagram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-social mb-1">
+      <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
+      <a href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
+    </div>
+    <div class="footer-badges mb-2">
+      <a href="#"><img src="google.png" alt="Get on Google Play" /></a>
+    </div>
+    <div>&copy; 2025 Pet Bazzar. All rights reserved.</div>
+    <div class="small mt-2" style="color:#D8A182;">
+      Made with <i class="bi bi-heart-fill" style="color:#EA6477;"></i> for pets &amp;
+      pet lovers!
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS + Animations -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      link.onclick = function () {
+        document
+          .querySelectorAll(".nav-link")
+          .forEach((a) => a.classList.remove("active"));
+        this.classList.add("active");
+      };
+    });
+    document.getElementById("contact-form").onsubmit = function (e) {
+  e.preventDefault();
+
+  const form = this;
+  const formMsg = document.getElementById("form-msg");
+
+  const formData = new FormData(form);
+
+  fetch(form.action, {
+    method: "POST",
+    body: formData
+  })
+    .then((res) => res.text())
+    .then((data) => {
+      if (data.trim() === "success") {
+        formMsg.innerHTML = "<div class='alert alert-success'>Thanks! Your message has been sent.</div>";
+        form.reset();
+      } else {
+        formMsg.innerHTML = "<div class='alert alert-danger'>Error: " + data + "</div>";
+      }
+    })
+    .catch((error) => {
+      formMsg.innerHTML = "<div class='alert alert-danger'>Something went wrong. Please try again later.</div>";
+      console.error(error);
+    });
+};
+
+    function animateOnScroll() {
+      document.querySelectorAll(".animate-fade-up").forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const topShown = rect.top < window.innerHeight - 40;
+        el.style.opacity = topShown ? 1 : 0.07;
+        el.style.transition =
+          "opacity 0.85s 0.09s cubic-bezier(.66,.06,.73,1.02), transform 0.7s";
+        el.style.transform = topShown ? "none" : "translateY(60px)";
+      });
+    }
+    window.addEventListener("scroll", animateOnScroll);
+    window.addEventListener("load", animateOnScroll);
+    document.querySelectorAll(".service-card").forEach((card) => {
+      card.classList.add("animate-fade-up");
+    });
+  </script>
+</body>
+</html>
